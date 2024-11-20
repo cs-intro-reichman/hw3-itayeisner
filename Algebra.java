@@ -29,7 +29,7 @@ public class Algebra {
 		if(x2>=0){
 			for (int i=0;i<x2;i++){sum++;}}
 		else{
-			for (int i=0;i<(-x2);i++){sum--;}}
+			for (int i=0;i>x2;i--){sum--;}}
 		return sum;
 	}
 
@@ -39,23 +39,31 @@ public class Algebra {
 		if(x2>=0){
 			for (int i=0;i<x2;i++){d--;}}
 		else{
-			for (int i=0;i<(-x2);i++){d++;}}
+			for (int i=0;i>x2;i--){d++;}}
 		return d;
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
 		int ans = 0;
-		if(x2>=0){
-		for(int i=0;i<x2;i++){
-			ans = plus(ans,x1);}}
-		
-		return ans;
-	}
+		boolean neg = (x1<0&&x2<0);
+		if(x1==0||x2==0){return 0;}
+		else if (x2>=0){
+			for(int i=0;i<x2;i++){
+				ans = plus(ans,x1);}
+		}
+		else{
+			for(int i=0;i>x2;i--){
+				ans = plus(ans,x1);}
+				ans = minus(0,ans);
+		}
+		return ans ;
+		}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
 		int power = x;
+		if(n==0){return 1;}
 		for(int i=1;i<n;i++){
 			power = times(power,x);
 		}
@@ -66,9 +74,22 @@ public class Algebra {
 	public static int div(int x1, int x2) {
 		int divie = x1;
 		int coun = 0;
-		while(divie>=x2){
-			divie = minus(divie,x2);
-			coun++;}
+		if(x2>=0){
+			if(x1>0){
+				while(divie>=x2){
+					divie = minus(divie,x2);
+					coun++;}}
+			
+			else{
+				while(divie<=minus(0, x2)){
+					divie = plus(divie,x2);
+					coun--;}}
+		}
+		else{
+			while(divie<=x2){
+				divie = minus(divie,x2);
+				coun++;}
+		}
 		return coun;
 	}
 
