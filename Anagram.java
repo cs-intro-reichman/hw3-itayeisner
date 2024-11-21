@@ -28,7 +28,7 @@ public class Anagram {
 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
-		// Replace the following statement with your code
+
 		boolean isang = false;
 		String str11 = preProcess(str1);
 		String str22 = preProcess(str2);
@@ -55,7 +55,6 @@ public class Anagram {
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
-		// Replace the following statement with your code
 		String pre = "";
 		for(int i=0;i<str.length();i++){
 			if(str.charAt(i)>='a'&&str.charAt(i)<='z'||str.charAt(i)>='A'&&str.charAt(i)<='Z'||str.charAt(i)<=' '){
@@ -69,23 +68,18 @@ public class Anagram {
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
-		// Replace the following statement with your code
 		String sub = "";
 		String str1 = "";
-		String check =str;
-		boolean isan = false;
-		while(!isan&&str.length()>0){
-			int rand = (int) (Math.random()*str.length());
-			sub += sub.charAt(rand);
+		while(str.length()>0){
+			int rand = (int) (Math.random()*(str.length()));
+			sub += str.charAt(rand);
 			for(int i=0;i<str.length();i++){
 				if(i != rand){
 				str1 += str.charAt(i);}
 			}
 			str=str1;
 			str1="";
-			if(isAnagram(sub, check)){isan = true;}
 		}
-		
 		return sub;	
 		}
 		
