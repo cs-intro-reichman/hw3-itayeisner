@@ -32,21 +32,21 @@ public class Anagram {
 		boolean isang = false;
 		String str11 = preProcess(str1);
 		String str22 = preProcess(str2);
-		if(str11.length()!=str22.length()){return false;}
 		int count1 = 0;
 		int count2 = 0;
 		for(int i=0;i<str11.length();i++){
 			for(int j=0;j<str11.length();j++){
-				if(str11.charAt(i)==str11.charAt(j)){count1++;}
+				if(str11.charAt(i)==str11.charAt(j)&&str11.charAt(i)!=' '){count1++;}
 			}
 			for(int j=0;j<str22.length();j++){
-				if(str11.charAt(i)==str22.charAt(j)){count2++;}
+				if(str11.charAt(i)==str22.charAt(j)&&str11.charAt(i)!=' '){count2++;}
 			}
 			if(count1==count2){isang=true;}
 			else{return false;}
 			count1 = 0;
 			count2 = 0;
 		}
+		if(str1==""&&str2==""){isang=true;}
 		
 		return isang;
 	}
@@ -58,7 +58,7 @@ public class Anagram {
 		// Replace the following statement with your code
 		String pre = "";
 		for(int i=0;i<str.length();i++){
-			if(str.charAt(i)>='a'&&str.charAt(i)<='z'||str.charAt(i)>='A'&&str.charAt(i)<='Z'){
+			if(str.charAt(i)>='a'&&str.charAt(i)<='z'||str.charAt(i)>='A'&&str.charAt(i)<='Z'||str.charAt(i)<=' '){
 				pre += str.charAt(i);
 			}
 		}
@@ -71,16 +71,19 @@ public class Anagram {
 	public static String randomAnagram(String str) {
 		// Replace the following statement with your code
 		String sub = "";
-		int len = str.length();
+		String str1 = "";
+		String check =str;
 		boolean isan = false;
-		while(!isan){
+		while(!isan&&str.length()>0){
+			int rand = (int) (Math.random()*str.length());
+			sub += sub.charAt(rand);
 			for(int i=0;i<str.length();i++){
-				int num = (int) (Math.random()*len);
-				if(sub.indexOf(str.charAt(num))==-1){
-				sub += str.charAt(num);}
-			
+				if(i != rand){
+				str1 += str.charAt(i);}
 			}
-			if(isAnagram(sub, str)){isan = true;}
+			str=str1;
+			str1="";
+			if(isAnagram(sub, check)){isan = true;}
 		}
 		
 		return sub;	
