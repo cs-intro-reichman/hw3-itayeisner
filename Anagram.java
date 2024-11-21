@@ -70,7 +70,9 @@ public class Anagram {
 	public static String randomAnagram(String str) {
 		String sub = "";
 		String str1 = "";
-		while(str.length()>0){
+		String check = str;
+		boolean isan = false;
+		while(!isan && str.length()>0){
 			int rand = (int) (Math.random()*(str.length()));
 			sub += str.charAt(rand);
 			for(int i=0;i<str.length();i++){
@@ -79,6 +81,7 @@ public class Anagram {
 			}
 			str=str1;
 			str1="";
+			if(isAnagram(check, sub)){isan=true;}
 		}
 		return sub;	
 		}
