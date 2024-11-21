@@ -62,10 +62,10 @@ public class LoanCalc {
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
         // Replace the following statement with your code
 		iterationCounter=0;
-		double H = loan*(1+rate/100);
+		double H = loan;
 		double L = loan/n;
 		double per = (H+L)/2;
-		while(Math.abs(endBalance(loan, rate , n, per))>epsilon){
+		while(H-L>epsilon){
 			if(endBalance(loan, rate , n, per)>0){
 				L=per;
 				per=(H+L)/2;
